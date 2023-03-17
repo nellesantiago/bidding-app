@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <%= render product %>
+    <p>
+      <%= link_to "Show this product", product %>
+    </p>
+  <% end %>
+</div>
+
+<% if current_user.admin? %>
+<%= link_to "New product", new_product_path %>
+<% end %>
+<%= link_to "Log out", logout_path, data: { turbo_method: :delete }%>
+
