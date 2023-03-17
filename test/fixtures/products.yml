@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+product1:
+  name: First Product
+  description: Lorem ipsum
+  starting_bid_price: 100
+  bidding_expiration: <%= 7.days.from_now %>
+  bidding_status: active
+  user_id: 1
+
+product2:
+  name: Second Product
+  description: MyText
+  starting_bid_price: 200
+  bidding_expiration: <%= 7.days.from_now %>
+  bidding_status: active
+  user_id: 1
