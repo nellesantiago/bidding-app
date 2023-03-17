@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :products
 
   validates_presence_of :first_name, :last_name, :email
 
