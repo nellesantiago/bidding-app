@@ -26,4 +26,11 @@ module SessionsHelper
     def current_user?(user)
       current_user == user
     end
+
+    def authenticate_admin
+      unless current_user.role == "admin"
+        flash[:danger] = "Invalid user permission"
+        redirect_to products_path
+      end
+    end
   end
