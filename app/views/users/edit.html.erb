@@ -4,7 +4,11 @@
 
 <br>
 
+<% if current_user.admin?%>
 <div>
-  <%= link_to "Show this user", @user %> |
+  <%= link_to "Show this user", @user %>
   <%= link_to "Back to users", users_path %>
 </div>
+<% end %>
+
+<%= link_to "Delete account", @user, data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>

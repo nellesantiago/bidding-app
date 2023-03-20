@@ -2,9 +2,26 @@
 
 <%= render @user %>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+<p>
+  <strong>Bids:</strong>
+  <% @user.bids.each do |bid| %>
+    <ul>
+      <li>
+        Product Name:
+        <%= bid.product.name %><br>
+        Bid Amount:
+        <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+        <br>
+        Date Placed:
+        <%= bid.created_at.strftime("%a, %d %b %Y %I:%M %p") %><br>
+      </li>
+    </ul>
+  <% end %>
+</p>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+<% if current_user.admin?%>
+<div>
+  <%= link_to "Back to users", users_path %>
+  <%= link_to "Destroy this user", @user, method: :delete %>
 </div>
+<% end %>
