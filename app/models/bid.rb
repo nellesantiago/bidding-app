@@ -11,5 +11,7 @@ class Bid < ApplicationRecord
       errors.add(:amount, "should be greater than or equal to starting bid price")
     end
   end
+
+  scope :bid_winner, ->() {find_by(amount: self.maximum(:amount))}
 end
 
