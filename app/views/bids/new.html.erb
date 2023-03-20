@@ -1,9 +1,7 @@
 <h1>New bid</h1>
 
-<%= render "form", bid: @bid %>
-
-<br>
+<%= render "form", bid: @bid, url: product_bids_path(@product) %>
 
 <div>
-  <%= link_to "Back to bids", bids_path %>
+
 </div>

@@ -1,5 +1,6 @@
 class BidsController < ApplicationController
   before_action :set_bid, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[new create edit update]
 
   def index
     @bids = Bid.all
@@ -9,35 +10,28 @@ class BidsController < ApplicationController
   end
 
   def new
-    @bid = Bid.new
+    @bid = @product.bids.build
   end
 
   def edit
   end
 
   def create
-    @bid = Bid.new(bid_params)
+    @bid = @product.bids.build(bid_params)
+    @bid.user_id = current_user.id
 
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to bid_url(@bid), notice: "Bid was successfully created." }
-        format.json { render :show, status: :created, location: @bid }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
-      end
+    if @bid.save
+      redirect_to products_path, notice: "Bid was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @bid.update(bid_params)
-        format.html { redirect_to bid_url(@bid), notice: "Bid was successfully updated." }
-        format.json { render :show, status: :ok, location: @bid }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
-      end
+    if @bid.update(bid_params)
+      redirect_to product_path(@bid.product), notice: "Bid was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -52,11 +46,15 @@ class BidsController < ApplicationController
 
   private
 
-    def set_bid
-      @bid = Bid.find(params[:id])
-    end
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
 
-    def bid_params
-      params.require(:bid).permit(:amount, :user_id, :product_id)
-    end
+  def set_bid
+    @bid = Bid.find(params[:id])
+  end
+
+  def bid_params
+    params.require(:bid).permit(:amount)
+  end
 end
