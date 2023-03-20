@@ -11,7 +11,11 @@
 
   <p>
     <strong>Starting bid price:</strong>
-    <%= product.starting_bid_price %>
+    <%= number_to_currency(
+      product.starting_bid_price,
+      unit: "₱",
+      strip_insignificant_zeros: true
+    ) %>
   </p>
 
   <p>
