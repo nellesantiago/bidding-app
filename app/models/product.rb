@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :user
+  has_many :bids
 
   validates_presence_of :description, :starting_bid_price
   validates :name, presence: true, length: { in: 1..20 }
