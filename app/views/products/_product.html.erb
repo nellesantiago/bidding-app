@@ -1,0 +1,92 @@
+<%= turbo_frame_tag product do %>
+  <div class="container">
+    <div class="name">
+      <div class="left">
+        <div class="title">
+          <%= product.name %>
+        </div>
+        <div class="min">
+          Minimum bid:
+          <span class="price">
+            <%= number_to_currency(
+              product.starting_bid_price,
+              unit: "₱",
+              strip_insignificant_zeros: true
+            ) %>
+          </span>
+        </div>
+        <div class="status">
+          <% if product.active? %>
+            <div class="active">
+              ongoing
+            </div>
+          <% else %>
+            <div class="inactive">
+              ended
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+      <%= image_for(product) %>
+    </div>
+
+    <div class="description">
+      <div id="details">Details:</div>
+      <div><%= product.description %></div>
+    </div>
+    <% unless current_user.user? %>
+      <div class="bidder-count">
+        <% if product.bids.any? %>
+          <%= pluralize(product.bids.count, "bidder") %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="expiry">
+      <% if product.active? %>
+        Bidding ends on
+        <strong>
+          <%= product.bidding_expiration.strftime("%b %d, %Y") %>
+        </strong>
+      <% elsif product.expired? && product.bids.any? %>
+        <div class="winner">
+          Winner:
+          <strong>
+            <%= product.bids.bid_winner.user.full_name %>
+            🎉
+          </strong>
+        </div>
+      <% else %>
+        No bidders.
+      <% end %>
+
+    </div>
+
+    <div class="buttons">
+      <% if current_user.admin? %>
+        <%= render "products/admin", product: product %>
+      <% else %>
+        <div class="user-button">
+          <% bid = product.bids.find_by(user_id: current_user.id) %>
+          <% if bid && product.active? %>
+            <%= link_to edit_product_bid_path(product, bid), data: { turbo_frame: "modal" } do %>
+              Placed
+              <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+            <% end %>
+          <% elsif !bid && product.active? %>
+            <%= link_to "Place a Bid",
+            new_product_bid_path(product),
+            data: {
+              turbo_frame: "modal"
+            } %>
+          <% elsif bid && product.expired? %>
+            <div class="amount">
+              Placed
+              <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

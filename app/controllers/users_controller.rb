@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @products = @user.bids
   end
 
   def new

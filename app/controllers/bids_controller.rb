@@ -21,7 +21,10 @@ class BidsController < ApplicationController
     @bid.user_id = current_user.id
 
     if @bid.save
-      redirect_to products_path, notice: "Bid was successfully created."
+      respond_to do |format|
+        format.html {redirect_to products_path, notice: "Bid was successfully created."}
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +32,10 @@ class BidsController < ApplicationController
 
   def update
     if @bid.update(bid_params)
-      redirect_to product_path(@bid.product), notice: "Bid was successfully updated."
+      respond_to do |format|
+        format.html {redirect_to product_path(@bid.product), notice: "Bid was successfully updated."}
+        format.turbo_stream
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,10 +44,7 @@ class BidsController < ApplicationController
   def destroy
     @bid.destroy
 
-    respond_to do |format|
-      format.html { redirect_to bids_url, notice: "Bid was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to bids_url, notice: "Bid was successfully destroyed."
   end
 
   private

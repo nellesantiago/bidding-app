@@ -1,22 +1,15 @@
 <%= form_with(model: bid, url: url) do |form| %>
   <% if bid.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
-
-      <ul>
-        <% bid.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <% bid.errors.each do |error| %>
+      <div class="errors"><%= error.full_message %></div>
+    <% end %>
   <% end %>
-
   <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.number_field :amount %>
+    <%= form.number_field :amount,
+                      placeholder: "#{bid.product.starting_bid_price} or higher", style: "margin-top: 10px" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit action_name == "new" ? "Place a Bid" : "Update" %>
   </div>
 <% end %>

@@ -1,15 +1,3 @@
-<div id="<%= dom_id bid %>">
-
-  <p>
-    <strong>Bidder:</strong>
-    <%= bid.user.full_name %>
-  </p>
-  <p>
-    <strong>Product:</strong>
-    <%= bid.product.name %>
-  </p>
-  <p>
-    <strong>Amount:</strong>
-    <%= bid.amount %>
-  </p>
-</div>
+<%= turbo_frame_tag bid do %>
+  <% bid %>
+<% end %>

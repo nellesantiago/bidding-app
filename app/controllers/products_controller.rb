@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_admin, except: %i[index show]
 
   def index
-    @products = Product.all
+    @products = Product.order(created_at: :desc)
   end
 
   def show
@@ -20,8 +20,10 @@ class ProductsController < ApplicationController
     @product = current_user.products.build(product_params)
 
     if @product.save
-      flash[:notice] = "Product added"
-      redirect_to products_path
+      respond_to do |format|
+        format.html {redirect_to products_path, notice: "Product added"}
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,8 +32,10 @@ class ProductsController < ApplicationController
   def update
     @product.bidding_status = 'active' if product_params[:bidding_expiration] && product_params[:bidding_expiration].to_datetime.future?
     if @product.update(product_params)
-      flash[:notice] = "Product updated"
-      redirect_to products_path
+      respond_to do |format|
+        format.html {redirect_to products_path, notice: "Product updated"}
+        format.turbo_stream
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,8 +43,10 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    flash[:notice] = "Product deleted"
-    redirect_to products_path
+    respond_to do |format|
+      format.html {redirect_to products_path, notice: "Product deleted"}
+      format.turbo_stream
+    end
   end
 
   private

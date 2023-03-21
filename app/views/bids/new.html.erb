@@ -1,7 +1,20 @@
-<h1>New bid</h1>
-
-<%= render "form", bid: @bid, url: product_bids_path(@product) %>
-
-<div>
-
-</div>
+<%= turbo_frame_tag "modal" do %>
+<main class="new-bid">
+  <div class="container">
+  <div class="top">
+  <div>
+    <div class="title">Place a Bid</div>
+    <div class="min">
+      You must bid at least
+      <%= number_to_currency(
+        @bid.product.starting_bid_price,
+        unit: "₱",
+        strip_insignificant_zeros: true
+      ) %></div></div>
+    <%= image_for(@bid.product)%>
+    </div>
+    <%= render "form", bid: @bid, url: product_bids_path(@product) %>
+     <%= link_to "Close", :back, class: "back" %>
+  </div>
+</main>
+<% end %>

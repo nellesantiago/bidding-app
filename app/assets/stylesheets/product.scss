@@ -53,7 +53,7 @@
           align-items: center;
           border-bottom: 1px solid #a58063;
           padding-bottom: 10px;
-          
+
           .left {
             .title {
               text-transform: capitalize;
@@ -62,12 +62,11 @@
               font-weight: 400;
               font-size: 14px;
             }
-            
+
             .price {
               font-weight: 500;
             }
-            
-           
+
             .status {
               font-size: 10px;
               color: white;
@@ -113,7 +112,6 @@
           font-size: 14px;
           margin-bottom: 10px;
         }
-
 
         .expiry {
           font-size: 14px;
@@ -170,16 +168,17 @@
               height: 100%;
               background-color: #d9471f;
               border-radius: 5px 0 0 5px;
-              cursor: pointer;              
+              cursor: pointer;
             }
 
-            input[data-disable-with="true"] {
+            input[data-disable-with='true'] {
               opacity: 0.44;
             }
           }
 
           .user-button {
             padding-bottom: 10px;
+
             a,
             input[type='submit'] {
               text-decoration: none;
@@ -194,6 +193,16 @@
                 color: #d9471f;
                 background-color: inherit;
               }
+            }
+
+            .amount{
+              text-decoration: none;
+              border: 1px solid #d9471f;
+              border-radius: 5px;
+              padding: 10px 30px;
+              color: #d9471f;
+              background-color: inherit;
+              transform: translateY(10px);
             }
 
             .winner {

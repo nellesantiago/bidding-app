@@ -8,7 +8,7 @@ class Bid < ApplicationRecord
 
   def bid_amount
     if self.amount && self.product && self.amount < self.product.starting_bid_price
-      errors.add(:amount, "should be greater than or equal to starting bid price")
+      errors.add(:amount, "should be greater than or equal to #{self.product.starting_bid_price}")
     end
   end
 
