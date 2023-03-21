@@ -53,8 +53,8 @@
           justify-content: space-between;
           align-items: center;
           border-bottom: 1px solid #a58063;
-          padding-bottom: 20px;
-
+          padding-bottom: 10px;
+          
           .left {
             .title {
               text-transform: capitalize;
@@ -63,11 +63,16 @@
               font-weight: 400;
               font-size: 14px;
             }
-
+            
             .price {
               font-weight: 500;
             }
-
+            
+            .bidder-count {
+              font-size: 12px;
+              margin-top: 5px;
+              font-weight: 300;
+            }
             .status {
               font-size: 10px;
               color: white;
@@ -108,6 +113,7 @@
             margin-bottom: 10px;
           }
         }
+
 
         .expiry {
           font-size: 14px;

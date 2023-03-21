@@ -36,6 +36,13 @@
                   </div>
                 <% end %>
               </div>
+               <% unless current_user.user? %>
+          <div class="bidder-count">
+            <% if product.bids.any? %>
+              <%= pluralize(product.bids.count, "bidder") %>
+            <% end %>
+          </div>
+          <% end %>
             </div>
             <%= avatar_for(product) %>
           </div>
@@ -61,6 +68,7 @@
               No bidders.
             <% end %>
           </div>
+         
           <div class="buttons">
             <% if current_user.admin? %>
               <%= render "products/admin", product: product, isResumable: @isResumable %>

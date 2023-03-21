@@ -21,10 +21,12 @@
     <%= form.text_area :description %>
   </div>
 
+  <% unless product.bids.any? %>
   <div>
     <%= form.label :starting_bid_price, style: "display: block" %>
     <%= form.number_field :starting_bid_price %>
   </div>
+  <% end %>
 
   <div>
     <%= form.label :bidding_expiration, style: "display: block" %>
