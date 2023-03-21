@@ -69,7 +69,7 @@
         <div class="user-button">
           <% bid = product.bids.find_by(user_id: current_user.id) %>
           <% if bid && product.active? %>
-            <%= link_to edit_product_bid_path(product, bid), data: { turbo_frame: "modal" } do %>
+            <%= link_to edit_product_bid_path(product, bid), data: { turbo_frame: "modal" }, class:"update-bid" do %>
               Placed
               <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
             <% end %>

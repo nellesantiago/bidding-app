@@ -1,6 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 product1:
+  id: 1
   name: First Product
   description: Lorem ipsum
   starting_bid_price: 100
@@ -9,6 +10,7 @@ product1:
   user_id: 1
 
 product2:
+  id: 2
   name: Second Product
   description: MyText
   starting_bid_price: 200
