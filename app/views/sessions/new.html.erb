@@ -8,6 +8,13 @@
       <div class="logo">
         <img src="https://www.linkpicture.com/q/click_1.png">
       </div>
+       <div id="flash">
+    <% flash.each do | message_type, message | %>
+      <div class="<%= message_type %>">
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
       <%= form_for(:session, url: login_path) do |form| %>
         <%= form.email_field :email, placeholder: "Email" %>
         <%= form.password_field :password, placeholder: "Password" %>

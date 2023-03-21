@@ -9,6 +9,11 @@
         <img src="https://www.linkpicture.com/q/click_1.png">
       </div>
       <%= form_with(model: @user) do |form| %>
+        <% if @user.errors.any? %>
+          <% @user.errors.each do |error| %>
+            <div class="errors"><%= error.full_message %></div>
+          <% end %>
+        <% end %>
         <div>
           <%= form.text_field :first_name, placeholder: "First name" %>
         </div>
@@ -30,7 +35,7 @@
         </div>
 
         <div>
-          <%= form.submit "Sign up"%>
+          <%= form.submit "Sign up" %>
         </div>
       <% end %>
 

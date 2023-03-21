@@ -2,8 +2,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
-  margin-top: 80px;
+  margin-top: 60px;
   border-radius: 10px;
+  min-height: 700px;
   .left {
     img {
       height: 100%;
@@ -18,7 +19,7 @@
     justify-content: center;
     text-align: center;
     .logo {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       img {
         width: 200px;
       }
@@ -37,6 +38,10 @@
         border: 1px solid #a6a6a6;
         border-radius: 5px;
         font-size: 16px;
+
+        &:first-child {
+          margin-top: 10px;
+        }
       }
 
       input[type='submit'] {
