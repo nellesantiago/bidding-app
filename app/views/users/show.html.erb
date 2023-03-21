@@ -1,27 +1,83 @@
-<p style="color: green"><%= notice %></p>
+<main class="user-bids">
+  <%= render "layouts/nav" %>
 
-<%= render @user %>
+  <section>
+    <div class="top">
+      <div class="title"><%= @user.first_name %>'s Bids</div>
+    </div>
+    <div class="bids">
+      <% @user.bids.each do |bid| %>
+        <div class="container">
+          <div class="name">
+            <div class="left">
+              <div class="title">
+                <%= bid.product.name %>
+              </div>
+              <div class="min">
+                Minimum bid:
+                <span>
+                  <%= number_to_currency(
+                    bid.product.starting_bid_price,
+                    unit: "₱",
+                    strip_insignificant_zeros: true
+                  ) %>
+                </span>
+              </div>
+              <div class="status">
+                <% if bid.product.active? %>
+                  <div class="active">
+                    ongoing
+                  </div>
+                <% else %>
+                  <div class="inactive">
+                    ended
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <%= image_for(bid.product) %>
+          </div>
+          <div class="description">
+            <div id="details">Details:</div>
+            <div><%= bid.product.description %></div>
+          </div>
+          <div class="expiry">
+            <% if bid.product.active? %>
+              Bidding ends on
+              <strong>
+                <%= bid.product.bidding_expiration.strftime("%b %d, %Y") %>
+              </strong>
+            <% elsif bid.product.expired? && bid.product.bids.any? %>
+              <div class="winner">
+                Winner:
+                <strong>
+                  <%= bid.product.bids.bid_winner.user.full_name %>
+                  🎉
+                </strong>
+              </div>
+            <% else %>
+              No bidders.
+            <% end %>
 
-<p>
-  <strong>Bids:</strong>
-  <% @user.bids.each do |bid| %>
-    <ul>
-      <li>
-        Product Name:
-        <%= bid.product.name %><br>
-        Bid Amount:
-        <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
-        <br>
-        Date Placed:
-        <%= bid.created_at.strftime("%a, %d %b %Y %I:%M %p") %><br>
-      </li>
-    </ul>
-  <% end %>
-</p>
+          </div>
+          <div class="buttons">
+            <% if current_user.user? %>
+              <div class="user-button">
+                <%= link_to edit_product_bid_path(bid.product, bid) do %>
+                  Placed
+                  <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="amount">
+                Placed
+                <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
 
-<% if current_user.admin?%>
-<div>
-  <%= link_to "Back to users", users_path %>
-  <%= link_to "Destroy this user", @user, method: :delete %>
-</div>
-<% end %>
+</main>

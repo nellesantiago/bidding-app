@@ -30,7 +30,6 @@
         align-items: center;
         text-align: center;
 
-
         .avatar {
           display: flex;
           justify-content: center;
@@ -60,17 +59,40 @@
           justify-content: center;
 
           .button {
-              text-decoration: none;
-              padding: 10px 20px;
-              border-radius: 5px;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #d9471f;
+            color: #d9471f;
+            background: none;
+            display: flex;
+            align-items: center;
+            margin: 0 5px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #d9471f;
               border: 1px solid #d9471f;
-              color: #d9471f;
+              color: white;
+            }
+          }
+
+          .delete {
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgb(204, 35, 35);
+            display: flex;
+            align-items: center;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 1px solid rgb(204, 35, 35);
+            color: white;
+
+            &:hover {
+              border: 1px solid rgb(204, 35, 35);
               background: none;
-              
-              &:hover {
-                background-color: #d9471f;
-                border: 1px solid #d9471f;
-                color: white;
+              color: rgb(204, 35, 35);
             }
           }
 
