@@ -1,14 +1,24 @@
-<h1>Editing user</h1>
-
-<%= render "form", user: @user %>
-
-<br>
-
-<% if current_user.admin?%>
-<div>
-  <%= link_to "Show this user", @user %>
-  <%= link_to "Back to users", users_path %>
-</div>
-<% end %>
-
-<%= link_to "Delete account", @user, data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+<main class="settings">
+  <%= render "layouts/nav" %>
+  <section>
+    <div class="top">
+      <div class="title">Account Settings</div>
+    </div>
+    <div class="body">
+      <%= render "form", user: @user %>
+      <div class="right">
+        <div class="text">Delete Account</div>
+        <div class="note">
+          Note: This is irreversible.<br>You may lose your data including your bids.
+        </div>
+        <%= link_to "Continue to account deletion",
+        @user,
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        },
+        class: "delete-account" %>
+      </div>
+    </div>
+  </section>
+</main>

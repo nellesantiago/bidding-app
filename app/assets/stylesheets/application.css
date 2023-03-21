@@ -26,3 +26,7 @@ body {
     padding: 30px 200px;
     color: #161613;
 }
+
+.clicked {
+  color: #d9471f;
+}
