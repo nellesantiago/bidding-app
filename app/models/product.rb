@@ -21,4 +21,8 @@ class Product < ApplicationRecord
       errors.add(:bidding_expiration, "can't be in the past")
     end
   end
+
+  def is_resumable?
+    self.bidding_expiration < DateTime.current
+  end
 end

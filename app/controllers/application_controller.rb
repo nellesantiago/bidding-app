@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include ProductsHelper
+  include UsersHelper
   before_action :check_expiry
 
   def check_expiry

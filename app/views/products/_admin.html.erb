@@ -7,11 +7,10 @@
     <% else %>
       <%= form_for product do |f| %>
         <%= f.hidden_field :bidding_status, value: "active" %>
-        <%= f.submit "Resume", disabled: isResumable, class: "resume" %>
+        <%= f.submit "Resume", data: {disable_with: product.is_resumable?}, class: "resume" %>
       <% end %>
     <% end %>
   <div class="edit">
-
     <%= link_to "Edit", edit_product_path(product) %>
   </div>
   <div class="delete">

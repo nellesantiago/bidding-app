@@ -7,7 +7,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @isResumable = @product.bidding_expiration < DateTime.current
   end
 
   def new

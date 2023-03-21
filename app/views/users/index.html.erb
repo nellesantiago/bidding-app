@@ -1,14 +1,37 @@
-<p style="color: green"><%= notice %></p>
+<main class="users">
+  <%= render "layouts/nav" %>
+  <section>
+    <div class="top">
+      <div class="title">All Users</div>
+    </div>
+    <div class="container">
+      <% @users.each do |user| %>
+      <div class="box">
+        <div class="avatar">
+          <%= avatar_for(user) %>
+        </div>
+        <div class="details">
+        <div class="name">
+          <%= user.full_name %>
+        </div>
+        <div class="email">
+          <%= user.email %>
+        </div>
+        </div>
+        <div class="bid-count">
+          <% if user.bids.any? %>
+            <%= link_to user do %>
+            <div class="button">
+            View <%= pluralize(user.bids.count, "bid") %>
+            </div>
+            <% end %>
+          <% else %>
+            No bids placed.
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </section>
 
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show Bids", user %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "Back to Products", products_path%>
+</main>

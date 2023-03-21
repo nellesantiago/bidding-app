@@ -36,20 +36,22 @@
                   </div>
                 <% end %>
               </div>
-               <% unless current_user.user? %>
-          <div class="bidder-count">
-            <% if product.bids.any? %>
-              <%= pluralize(product.bids.count, "bidder") %>
-            <% end %>
-          </div>
-          <% end %>
+              
             </div>
-            <%= avatar_for(product) %>
+            <%= image_for(product) %>
           </div>
+         
           <div class="description">
             <div id="details">Details:</div>
             <div><%= product.description %></div>
           </div>
+           <% unless current_user.user? %>
+                <div class="bidder-count">
+                  <% if product.bids.any? %>
+                    <%= pluralize(product.bids.count, "bidder") %>
+                  <% end %>
+                </div>
+              <% end %>
           <div class="expiry">
             <% if product.active? %>
               Bidding ends on
@@ -67,22 +69,23 @@
             <% else %>
               No bidders.
             <% end %>
+            
           </div>
-         
+
           <div class="buttons">
             <% if current_user.admin? %>
-              <%= render "products/admin", product: product, isResumable: @isResumable %>
+              <%= render "products/admin", product: product %>
             <% else %>
-            <div class="user-button">
-              <% bid = product.bids.find_by(user_id: current_user.id) %>
-              <% if bid && product.active? %>
-                <%= link_to edit_product_bid_path(product, bid) do %>
-                  Placed
-                  <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+              <div class="user-button">
+                <% bid = product.bids.find_by(user_id: current_user.id) %>
+                <% if bid && product.active? %>
+                  <%= link_to edit_product_bid_path(product, bid) do %>
+                    Placed
+                    <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+                  <% end %>
+                <% elsif !bid && product.active? %>
+                  <%= link_to "Place a Bid", new_product_bid_path(product) %>
                 <% end %>
-              <% elsif !bid && product.active? %>
-                <%= link_to "Place a Bid", new_product_bid_path(product) %>
-              <% end %>
               </div>
             <% end %>
           </div>
