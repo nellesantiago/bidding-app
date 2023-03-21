@@ -1,11 +1,37 @@
-<p style="color: green"><%= notice %></p>
+<main class="bids">
+  <%= render "layouts/nav" %>
+  <section>
+    <div class="top">
+      <div class="title">All Bids</div>
+    </div>
 
-<h1>Bids</h1>
-
-<div id="bids">
-  <% @bids.each do |bid| %>
-    <%= render bid %>
-  <% end %>
-</div>
-
-
+    <div class="table">
+      <div class="th">
+        <div>Date</div>
+        <div>Product Name</div>
+        <div>Minimum Bid</div>
+        <div>Status</div>
+        <div>Bidder</div>
+        <div>Bid Placed</div>
+      </div>
+      <% @bids.each do |bid| %>
+        <div class="data">
+          <div><%= bid.created_at.strftime("%b %d, %Y") %></div>
+          <div><%= bid.product.name %></div>
+          <div><%= number_to_currency(
+                bid.product.starting_bid_price,
+                unit: "₱",
+                strip_insignificant_zeros: true
+              ) %></div>
+              <% if bid.product.active? %>
+              <div class="active"> ongoing </div>
+              <% else %>
+              <div class="inactive"> ended </div>
+              <% end %>
+          <div><%= bid.user.full_name %></div>
+          <div><%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</main>
