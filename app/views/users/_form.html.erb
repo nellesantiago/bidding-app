@@ -2,6 +2,7 @@
   <% if user.errors.any? %>
     <% user.errors.each do |error| %>
       <div class="errors"><%= error.full_message %></div>
+      <% end %>
     <% end %>
 
     <div>
