@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get "register", to: "users#new"
 
+  resources :bids, only: %i[index]
+
   resources :users, except: %i[new] do
     resources :bids, only: %i[index]
   end

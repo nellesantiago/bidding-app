@@ -1,0 +1,26 @@
+<div class="admin-buttons">
+    <% if product.active? %>
+      <%= form_for product do |f| %>
+        <%= f.hidden_field :bidding_status, value: "expired" %>
+        <%= f.submit "Stop", class: "stop" %>
+      <% end %>
+    <% else %>
+      <%= form_for product do |f| %>
+        <%= f.hidden_field :bidding_status, value: "active" %>
+        <%= f.submit "Resume", disabled: isResumable, class: "resume" %>
+      <% end %>
+    <% end %>
+  <div class="edit">
+
+    <%= link_to "Edit", edit_product_path(product) %>
+  </div>
+  <div class="delete">
+
+    <%= link_to "Delete",
+    product,
+    data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
+  </div>
+</div>
