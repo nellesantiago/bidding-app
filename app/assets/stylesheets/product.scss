@@ -160,6 +160,11 @@
               }
             }
 
+            .disabled {
+              opacity: 0.55;
+              pointer-events: none;
+            }
+
             input[type='submit'] {
               background: none;
               border: none;

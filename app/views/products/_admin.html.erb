@@ -10,9 +10,15 @@
         <%= f.submit "Resume", data: {disable_with: product.is_resumable?}, class: "resume" %>
       <% end %>
     <% end %>
+    <% if product.expired? && product.is_resumable? %>
+     <div class="edit disabled">
+    <%= link_to "Edit", edit_product_path(product), data: {turbo_frame: "modal"} %>
+  </div>
+  <% else %>
   <div class="edit">
     <%= link_to "Edit", edit_product_path(product), data: {turbo_frame: "modal"} %>
   </div>
+  <% end %>
   <div class="delete">
 
     <%= link_to "Delete",
