@@ -21,8 +21,8 @@ class ProductsController < ApplicationController
 
     if @product.save
       respond_to do |format|
-        format.html {redirect_to products_path, notice: "Product added"}
-        format.turbo_stream
+        format.html {redirect_to products_path}
+        format.turbo_stream {flash.now[:notice] = "Product added!"}
       end
     else
       render :new, status: :unprocessable_entity
@@ -33,8 +33,8 @@ class ProductsController < ApplicationController
     @product.bidding_status = 'active' if product_params[:bidding_expiration] && product_params[:bidding_expiration].to_datetime.future?
     if @product.update(product_params)
       respond_to do |format|
-        format.html {redirect_to products_path, notice: "Product updated"}
-        format.turbo_stream
+        format.html {redirect_to products_path}
+        format.turbo_stream {flash.now[:notice] = "Product updated!"}
       end
     else
       render :edit, status: :unprocessable_entity
@@ -44,8 +44,9 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html {redirect_to products_path, notice: "Product deleted"}
-      format.turbo_stream
+      format.html {redirect_to products_path}
+      format.turbo_stream {flash.now[:notice] = "Product deleted!"}
+
     end
   end
 

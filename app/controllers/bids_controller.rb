@@ -22,8 +22,8 @@ class BidsController < ApplicationController
 
     if @bid.save
       respond_to do |format|
-        format.html {redirect_to products_path, notice: "Bid was successfully created."}
-        format.turbo_stream
+        format.html {redirect_to products_path}
+        format.turbo_stream {flash.now[:notice] = "Bid placed!"}
       end
     else
       render :new, status: :unprocessable_entity
@@ -33,8 +33,8 @@ class BidsController < ApplicationController
   def update
     if @bid.update(bid_params)
       respond_to do |format|
-        format.html {redirect_to product_path(@bid.product), notice: "Bid was successfully updated."}
-        format.turbo_stream
+        format.html {redirect_to product_path(@bid.product)}
+        format.turbo_stream {flash.now[:notice] = "Bid updated!"}
       end
     else
       render :edit, status: :unprocessable_entity

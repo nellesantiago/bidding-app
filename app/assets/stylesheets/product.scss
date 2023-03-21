@@ -173,6 +173,7 @@
 
             input[data-disable-with='true'] {
               opacity: 0.44;
+              pointer-events: none;
             }
           }
 

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      flash[:notice] = "Welcome, #{@user.first_name}"
+      flash[:notice] = "Welcome, #{@user.first_name}!"
       redirect_to products_path
     else
       render :new, status: :unprocessable_entity
@@ -32,8 +32,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "Account updated."
-      redirect_to user_path(@user)
+      flash[:notice] = "Account updated!"
+      redirect_to edit_user_path(@user)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,12 +43,12 @@ class UsersController < ApplicationController
   def destroy
    if current_user.admin?
     @user.destroy
-    flash[:notice] = "User deleted."
+    flash[:notice] = "User deleted!"
     redirect_to users_path
   else
     log_out
     @user.destroy
-    flash[:notice] = "Account deleted."
+    flash[:notice] = "Account deleted!"
     redirect_to root_url
    end
   end

@@ -45,3 +45,55 @@ input[type=number] {
   font-size: 12px;
   color: red;
 }
+
+.notice {
+  display: block;
+  font-size: 14px;
+  width: 200px;
+  padding: 20px;
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  margin-left: -90px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #d9471f;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+  -webkit-animation: moveOpen 2s;
+  -webkit-animation-iteration-count: forwards;
+  -webkit-animation-fill-mode: forwards;
+  z-index: 20;
+}
+
+@-webkit-keyframes moveOpen {
+  from {
+    -webkit-transform: translate(0, -100px);
+  }
+  10% {
+    -webkit-transform: translate(0, 20px);
+  }
+  12% {
+    -webkit-transform: translate(0, 22px);
+  }
+  16% {
+    -webkit-transform: translate(0, 20px);
+  }
+  80% {
+    -webkit-transform: translate(0, 20px);
+  }
+  85% {
+    -webkit-transform: translate(0, 25px);
+  }
+  to {
+    -webkit-transform: translate(0, -200px);
+  }
+}
+
+.alert {
+  color: rgb(219, 37, 37);
+  margin-bottom: 20px;
+  font-size: 12px;
+}
