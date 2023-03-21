@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
 
-  resources :users do
+  get "register", to: "users#new"
+
+  resources :users, except: %i[new] do
     resources :bids, only: %i[index]
   end
   resources :products do
