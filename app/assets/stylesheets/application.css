@@ -22,9 +22,9 @@
 }
 
 body {
-    background-color: #F6F4F0;
-    padding: 30px 200px;
-    color: #161613;
+  background-color: #f6f4f0;
+  padding: 30px 200px;
+  color: #161613;
 }
 
 .clicked {
@@ -37,7 +37,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 

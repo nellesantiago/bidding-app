@@ -4,7 +4,6 @@
     <div class="top">
       <div class="title">All Bids</div>
     </div>
-
     <div class="table">
       <div class="th">
         <div>Date</div>
@@ -19,15 +18,19 @@
           <div><%= bid.created_at.strftime("%b %d, %Y") %></div>
           <div><%= bid.product.name %></div>
           <div><%= number_to_currency(
-                bid.product.starting_bid_price,
-                unit: "₱",
-                strip_insignificant_zeros: true
-              ) %></div>
-              <% if bid.product.active? %>
-              <div class="active"> ongoing </div>
-              <% else %>
-              <div class="inactive"> ended </div>
-              <% end %>
+              bid.product.starting_bid_price,
+              unit: "₱",
+              strip_insignificant_zeros: true
+            ) %></div>
+          <% if bid.product.active? %>
+            <div class="active">
+              ongoing
+            </div>
+          <% else %>
+            <div class="inactive">
+              ended
+            </div>
+          <% end %>
           <div><%= bid.user.full_name %></div>
           <div><%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %></div>
         </div>

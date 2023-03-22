@@ -2,26 +2,26 @@
   <div class="left">
     <img src="https://www.linkpicture.com/q/bids-removebg-preview.png">
   </div>
-
   <div class="right">
     <div class="container">
       <div class="logo">
         <img src="https://www.linkpicture.com/q/click_1.png">
       </div>
-       <div id="flash">
-    <% flash.each do | message_type, message | %>
-      <div class="<%= message_type %>">
-        <%= message %>
+      <div id="flash">
+        <% flash.each do | message_type, message | %>
+          <div class="<%= message_type %>">
+            <%= message %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
       <%= form_for(:session, url: login_path) do |form| %>
         <%= form.email_field :email, placeholder: "Email" %>
         <%= form.password_field :password, placeholder: "Password" %>
         <%= form.submit "Log in" %>
       <% end %>
       <div class="text">
-        Don't have an account? <%= link_to "Sign up!", register_path %>
+        Don't have an account?
+        <%= link_to "Sign up!", register_path %>
       </div>
       <div class="back">
         <%= link_to "< Back to Home", root_path %>

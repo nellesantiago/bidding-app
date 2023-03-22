@@ -26,11 +26,9 @@
             </div>
           <% end %>
         </div>
-
       </div>
       <%= image_for(product) %>
     </div>
-
     <div class="description">
       <div id="details">Details:</div>
       <div><%= product.description %></div>
@@ -59,9 +57,7 @@
       <% else %>
         No bidders.
       <% end %>
-
     </div>
-
     <div class="buttons">
       <% if current_user.admin? %>
         <%= render "products/admin", product: product %>

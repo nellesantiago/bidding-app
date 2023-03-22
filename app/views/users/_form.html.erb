@@ -1,10 +1,5 @@
 <%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <% user.errors.each do |error| %>
-      <div class="errors"><%= error.full_message %></div>
-      <% end %>
-    <% end %>
-
+ <%= render "shared/errors", object: user %>
     <div>
       <%= form.label :first_name %>
       <%= form.text_field :first_name %>

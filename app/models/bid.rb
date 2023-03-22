@@ -12,6 +12,5 @@ class Bid < ApplicationRecord
     end
   end
 
-  scope :bid_winner, ->() {find_by(amount: self.maximum(:amount))}
+  scope :bid_winner, ->() { find_by(amount: self.maximum(:amount)) }
 end
-

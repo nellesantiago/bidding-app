@@ -29,7 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def update
     if @user.update(user_params)
       flash[:notice] = "Account updated!"
@@ -39,27 +38,26 @@ class UsersController < ApplicationController
     end
   end
 
-
   def destroy
-   if current_user.admin?
-    @user.destroy
-    flash[:notice] = "User deleted!"
-    redirect_to users_path
-  else
-    log_out
-    @user.destroy
-    flash[:notice] = "Account deleted!"
-    redirect_to root_url
-   end
+    if current_user.admin?
+      @user.destroy
+      flash[:notice] = "User deleted!"
+      redirect_to users_path
+    else
+      log_out
+      @user.destroy
+      flash[:notice] = "Account deleted!"
+      redirect_to root_url
+    end
   end
 
   private
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
 end

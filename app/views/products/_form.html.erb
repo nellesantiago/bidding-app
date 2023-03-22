@@ -1,33 +1,24 @@
 <%= form_with(model: product) do |form| %>
-  <% if product.errors.any? %>
-        <% product.errors.each do |error| %>
-          <div class="errors"><%= error.full_message %></div>
-        <% end %>
-  <% end %>
-
+  <%= render "shared/errors", object: product %>
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
-
   <div>
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
-
   <% unless product.bids.any? %>
-  <div>
-    <%= form.label :starting_bid_price, style: "display: block" %>
-    <%= form.number_field :starting_bid_price %>
-  </div>
+    <div>
+      <%= form.label :starting_bid_price, style: "display: block" %>
+      <%= form.number_field :starting_bid_price %>
+    </div>
   <% end %>
-
   <div>
     <%= form.label :bidding_expiration, style: "display: block" %>
     <%= form.datetime_local_field :bidding_expiration %>
   </div>
-
   <div>
-    <%= form.submit action_name == 'new' ? 'Create' : 'Update' %>
+    <%= form.submit action_name == "new" ? "Create" : "Update" %>
   </div>
 <% end %>

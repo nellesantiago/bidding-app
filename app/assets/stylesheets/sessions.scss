@@ -52,12 +52,11 @@
         cursor: pointer;
 
         &:hover {
-            border: 1px solid #d9471f;
-            color: #d9471f;
-            background-color: inherit;
-          }
+          border: 1px solid #d9471f;
+          color: #d9471f;
+          background-color: inherit;
+        }
       }
-
     }
     .text {
       margin-top: 20px;
@@ -67,24 +66,22 @@
         color: inherit;
         font-weight: 600;
 
-
         &:hover {
-            text-decoration: underline;
+          text-decoration: underline;
         }
       }
     }
 
     .back {
+      margin-top: 10px;
+      a {
+        color: inherit;
+        font-size: 14px;
 
-        margin-top: 10px;
-        a {
-            color: inherit;
-            font-size: 14px;
-
-            &:hover {
-                text-decoration: underline;
-            }
+        &:hover {
+          text-decoration: underline;
         }
+      }
     }
   }
 }

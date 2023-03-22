@@ -1,14 +1,10 @@
 <%= form_with(model: bid, url: url) do |form| %>
-  <% if bid.errors.any? %>
-    <% bid.errors.each do |error| %>
-      <div class="errors"><%= error.full_message %></div>
-    <% end %>
-  <% end %>
+  <%= render "shared/errors", object: bid %>
   <div>
     <%= form.number_field :amount,
-                      placeholder: "#{bid.product.starting_bid_price} or higher", style: "margin-top: 10px" %>
+                      placeholder: "#{bid.product.starting_bid_price} or higher",
+                      style: "margin-top: 10px" %>
   </div>
-
   <div>
     <%= form.submit action_name == "new" ? "Place a Bid" : "Update" %>
   </div>

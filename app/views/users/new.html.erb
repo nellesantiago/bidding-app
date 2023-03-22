@@ -2,18 +2,13 @@
   <div class="left">
     <img src="https://www.linkpicture.com/q/bids-removebg-preview.png">
   </div>
-
   <div class="right">
     <div class="container">
       <div class="logo">
         <img src="https://www.linkpicture.com/q/click_1.png">
       </div>
       <%= form_with(model: @user) do |form| %>
-        <% if @user.errors.any? %>
-          <% @user.errors.each do |error| %>
-            <div class="errors"><%= error.full_message %></div>
-          <% end %>
-        <% end %>
+        <%= render "shared/errors", object: @user %>
         <div>
           <%= form.text_field :first_name, placeholder: "First name" %>
         </div>
@@ -38,7 +33,6 @@
           <%= form.submit "Sign up" %>
         </div>
       <% end %>
-
       <div class="text">
         Already have an account?
         <%= link_to "Log in!", login_path %>

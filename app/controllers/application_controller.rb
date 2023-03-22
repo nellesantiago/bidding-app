@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     @products_active.each do |product|
       if product.bidding_expiration.past?
         product.update!(bidding_status: "expired")
-    end
+      end
     end
   end
 end
