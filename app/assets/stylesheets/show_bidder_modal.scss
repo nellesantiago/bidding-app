@@ -36,8 +36,8 @@
     .grid {
       display: grid;
       width: 100%;
-      grid-template-rows: 35px 2fr;
-      min-height: 150px;
+      grid-template-rows: 35px 50px;
+      min-height: 200px;
 
       .header {
         display: grid;
@@ -54,6 +54,10 @@
         grid-template-columns: 0.5fr 2fr 1fr;
         font-size: 14px;
         text-align: center;
+
+        div {
+          margin: 5px 0;
+        }
       }
     }
 
