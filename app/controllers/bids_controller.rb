@@ -8,9 +8,11 @@ class BidsController < ApplicationController
 
   def new
     @bid = @product.bids.build
+    @lowest_bid = @product.bids.lowest_bid
   end
 
   def edit
+    @lowest_bid = @product.bids.lowest_bid
   end
 
   def create

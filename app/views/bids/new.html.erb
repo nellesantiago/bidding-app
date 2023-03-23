@@ -10,7 +10,14 @@
               @bid.product.starting_bid_price,
               unit: "₱",
               strip_insignificant_zeros: true
-            ) %></div></div>
+            ) %></div>
+          <% if @lowest_bid.present? %>
+            <div class="lowest">
+              Current lowest bid:
+              <%= number_to_currency(@lowest_bid, unit: "₱", strip_insignificant_zeros: true) %>
+            </div>
+          <% end %>
+        </div>
         <%= image_for(@bid.product) %>
       </div>
       <%= render "form", bid: @bid, url: product_bids_path(@product) %>
