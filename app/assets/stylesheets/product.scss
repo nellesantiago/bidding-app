@@ -160,14 +160,14 @@
               justify-content: center;
               align-items: center;
               background-color: #d9471f;
-              font-size: 14px;
+              font-size: 12px;
 
               &:nth-child(2) {
-                background-color: rgb(47, 120, 47);
+                background-color: rgb(37, 119, 141);
               }
 
               &:last-child {
-                background-color: rgb(204, 35, 35);
+                background-color: rgb(192, 58, 58);
                 border-radius: 0 5px 5px 0;
               }
 
@@ -191,9 +191,15 @@
               color: white;
               width: 100%;
               height: 100%;
-              background-color: #d9471f;
+              background-color: #d9881f;
               border-radius: 5px 0 0 5px;
               cursor: pointer;
+              font-size: 12px;
+            }
+
+            input[value="Stop"] {
+              background-color: rgb(192, 58, 58);
+
             }
 
             input[data-disable-with='true'] {
