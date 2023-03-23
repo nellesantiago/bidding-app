@@ -14,7 +14,7 @@
                class: "resume" %>
     <% end %>
   <% end %>
-  <% if product.expired? && product.is_resumable? %>
+  <% if product.expired?  %>
     <div class="edit disabled">
       <%= link_to "Edit", edit_product_path(product), data: { turbo_frame: "modal" } %>
     </div>
