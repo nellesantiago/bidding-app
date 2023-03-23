@@ -85,7 +85,7 @@
               .inactive {
                 padding: 3px 0;
                 border-radius: 5px;
-                background-color: red;
+                background-color: rgb(204, 35, 35);
               }
             }
           }
@@ -197,9 +197,8 @@
               font-size: 12px;
             }
 
-            input[value="Stop"] {
+            input[value='Stop'] {
               background-color: rgb(192, 58, 58);
-
             }
 
             input[data-disable-with='true'] {
