@@ -1,9 +1,12 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ edit update destroy ]
+  before_action :set_product, only: %i[ show edit update destroy ]
   before_action :authenticate_admin, except: %i[index]
 
   def index
     @products = Product.order(created_at: :desc)
+  end
+  
+  def show
   end
 
   def new

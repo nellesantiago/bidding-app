@@ -36,7 +36,9 @@
     <% unless current_user.user? %>
       <div class="bidder-count">
         <% if product.bids.any? %>
+        <%= link_to product_path(product), data: {turbo_frame: "modal"} do %>
           <%= pluralize(product.bids.count, "bidder") %>
+          <% end %>
         <% end %>
       </div>
     <% end %>
