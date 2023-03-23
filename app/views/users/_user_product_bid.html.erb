@@ -52,18 +52,25 @@
       <% end %>
 
     </div>
+    <div class="amount-placed">
+      Placed
+      <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+    </div>
     <div class="buttons">
       <% if current_user.user? && bid.product.active? %>
         <div class="user-button">
-          <%= link_to edit_product_bid_path(bid.product, bid), data: {turbo_frame: "modal"} do %>
-            Placed
-            <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
-          <% end %>
+          <%= link_to "Update Bid",
+          edit_product_bid_path(bid.product, bid),
+          data: {
+            turbo_frame: "modal"
+          } %>
         </div>
-      <% else %>
-        <div class="amount">
-          Placed
-          <%= number_to_currency(bid.amount, unit: "₱", strip_insignificant_zeros: true) %>
+      <% elsif current_user.user? && bid.product.expired? %>
+        <div class="ended">
+          The bidding has ended.
+          <% if bid.product.bids.bid_winner == bid %>
+            You won!
+          <% end %>
         </div>
       <% end %>
     </div>
