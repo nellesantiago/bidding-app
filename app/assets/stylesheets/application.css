@@ -47,7 +47,7 @@ input[type='number'] {
   text-align: left;
 }
 
-.notice {
+.notice, .danger {
   display: block;
   font-size: 14px;
   width: 200px;
@@ -67,6 +67,10 @@ input[type='number'] {
   -webkit-animation-iteration-count: forwards;
   -webkit-animation-fill-mode: forwards;
   z-index: 20;
+}
+
+.danger {
+  width: 250px;
 }
 
 @-webkit-keyframes moveOpen {

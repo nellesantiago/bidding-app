@@ -15,9 +15,8 @@ Rails.application.routes.draw do
 
   resources :bids, only: %i[index]
 
-  resources :users, except: %i[new] do
-    resources :bids, only: %i[index]
-  end
+  resources :users, except: %i[new]
+  
   resources :products do
     resources :bids, only: %i[new create edit update]
   end

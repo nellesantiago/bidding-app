@@ -1,6 +1,8 @@
 class BidsController < ApplicationController
-  before_action :set_bid, only: %i[ edit update destroy ]
+  before_action :set_bid, only: %i[ edit update ]
   before_action :set_product, only: %i[new create edit update]
+  before_action :authenticate_admin, only: %i[ index ]
+  before_action :restrict_admin, only: %i[new create edit update]
 
   def index
     @bids = Bid.all
@@ -38,12 +40,6 @@ class BidsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
-  end
-
-  def destroy
-    @bid.destroy
-
-    redirect_to bids_url, notice: "Bid was successfully destroyed."
   end
 
   private

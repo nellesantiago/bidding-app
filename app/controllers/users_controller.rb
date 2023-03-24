@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, except: %i[new create]
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin, only: %i[index]
+  before_action :require_correct_user, only: %i[show edit update destroy]
+  before_action :restrict_admin, only: %i[edit update]
 
   def index
     @users = User.where(role: "user")
