@@ -7,15 +7,17 @@
     <div class="table">
       <div class="th">
         <div>Date</div>
+        <div>Time</div>
         <div>Product Name</div>
         <div>Minimum Bid</div>
         <div>Status</div>
         <div>Bidder</div>
         <div>Bid Placed</div>
       </div>
-      <% @bids.each do |bid| %>
+      <% @bids.order(updated_at: :desc).each do |bid| %>
         <div class="data">
           <div><%= bid.created_at.strftime("%b %d, %Y") %></div>
+          <div><%= bid.created_at.strftime("%I:%M:%S %p") %></div>
           <div><%= bid.product.name %></div>
           <div><%= number_to_currency(
               bid.product.starting_bid_price,
